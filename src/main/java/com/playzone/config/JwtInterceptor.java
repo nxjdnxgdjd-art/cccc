@@ -1,5 +1,4 @@
 package com.playzone.config;
-
 import com.playzone.entity.User;
 import com.playzone.repository.UserRepository;
 import com.playzone.util.JwtUtil;
