@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayZone - Premium Dark Neon Gaming Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a051b',
+                        darkpanel: '#110c28',
+                        brandpurple: '#7b2cbf',
+                        brandpurplelight: '#9d4edd',
+                        brandred: '#ff0054',
+                        brandblue: '#00f0ff',
+                        brandgreen: '#39FF14'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-darkbg text-gray-200 select-none min-h-screen">
+
+    <!-- ==================== GUEST / AUTH LAYOUT ==================== -->
+    <div id="auth-layout" class="min-h-screen flex flex-col justify-between hidden">
+        <!-- Top Navbar -->
+        <header class="flex justify-between items-center px-6 py-4 md:px-12 border-b border-purple-950/30 bg-darkbg/90 backdrop-blur-md z-40">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-gamepad text-purple-500 text-3xl drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]"></i>
+                <span class="brand-font text-2xl font-black uppercase tracking-wider text-white">Play<span class="text-purple-500">Zone</span></span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-300">
+                <a href="#" class="hover:text-purple-400 transition">Home</a>
+                <a href="#" class="hover:text-purple-400 transition">Games</a>
+                <a href="#" class="hover:text-purple-400 transition">Promotions</a>
+                <a href="#" class="hover:text-purple-400 transition">Leaderboard</a>
+                <a href="#" class="hover:text-purple-400 transition">How to Play</a>
+                <a href="#" class="hover:text-purple-400 transition">Support</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button onclick="showGuestLayout('login')" class="px-5 py-2 text-sm font-semibold rounded-xl border border-purple-500/30 hover:border-purple-500 hover:text-white transition">LOGIN</button>
+                <button onclick="showGuestLayout('register')" class="px-5 py-2 text-sm font-semibold rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold transition shadow-[0_0_15px_rgba(123,44,191,0.4)]">REGISTER</button>
+            </div>
+        </header>
+
+        <!-- Main Auth Split View -->
+        <main class="flex-grow flex items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div class="w-full max-w-6xl grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                <!-- Left Column (Visual Art) -->
+                <div class="hidden md:block md:col-span-6 space-y-8 pr-6">
+                    <h1 class="text-5xl md:text-6xl font-black leading-tight tracking-tight text-white uppercase Outfit">
+                        Play. Win.<br><span class="text-purple-500 drop-shadow-[0_0_15px_rgba(168,85,247,0.4)]">Cash Out.</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-md">
+                        Join PlayZone and start winning real money by playing exciting games like Aviator and Mines. Sign up now to receive your welcome credits!
+                    </p>
+
+                    <!-- Art Banner -->
+                    <div class="relative w-full rounded-3xl overflow-hidden border border-purple-900/40 purple-glow select-none">
+                        <img src="assets/images/login_character.png" alt="Futuristic Gamer Artwork" class="w-full h-auto object-cover max-h-[450px]">
+                    </div>
+
+                    <!-- Highlight Features -->
+                    <div class="grid grid-cols-3 gap-4 pt-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="h-10 w-10 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">100% Secure</h4>
+                                <p class="text-[10px] text-gray-500">Fully Protected</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="h-10 w-10 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400"><i class="fa-solid fa-bolt"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Instant Withdraw</h4>
+                                <p class="text-[10px] text-gray-500">Fast Cash Out</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="h-10 w-10 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400"><i class="fa-solid fa-gift"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Daily Rewards</h4>
+                                <p class="text-[10px] text-gray-500">Exciting Bonuses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Forms) -->
+                <div class="col-span-12 md:col-span-6 w-full max-w-md mx-auto">
+                    <!-- LOGIN FORM CONTAINER -->
+                    <div id="login-form-container" class="glass-panel rounded-3xl p-8 border border-purple-900/40 relative">
+                        <h2 class="text-3xl font-bold text-white mb-1">Welcome <span class="text-purple-400">Back!</span></h2>
+                        <p class="text-gray-400 text-sm mb-6">Login to your PlayZone account</p>
+
+                        <!-- Error Banner -->
+                        <div id="login-error" class="hidden p-3 mb-4 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400 text-xs font-medium flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span>Error text goes here</span>
+                        </div>
+
+                        <form id="login-form" class="space-y-4">
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Email Address / Username</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </div>
+                                    <input type="text" id="login-identifier" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition" placeholder="Enter username or email" required>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Password</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </div>
+                                    <input type="password" id="login-password" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-3 pl-10 pr-10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition" placeholder="••••••••" required>
+                                    <button type="button" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-500 hover:text-purple-400" onclick="togglePasswordVisibility('login-password')">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs py-1">
+                                <label class="flex items-center space-x-2.5 cursor-pointer">
+                                    <input type="checkbox" class="custom-checkbox">
+                                    <span class="text-gray-400">Remember Me</span>
+                                </label>
+                                <a href="#" class="text-purple-400 hover:underline">Forgot Password?</a>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-600 hover:to-indigo-600 text-white font-bold text-sm tracking-wider uppercase transition purple-glow shadow-[0_0_15px_rgba(123,44,191,0.5)]">LOGIN</button>
+                        </form>
+
+                        <div class="relative flex py-4 items-center">
+                            <div class="flex-grow border-t border-purple-950/40"></div>
+                            <span class="flex-shrink mx-4 text-gray-500 text-xs font-bold uppercase tracking-wider">OR</span>
+                            <div class="flex-grow border-t border-purple-950/40"></div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="flex items-center justify-center space-x-2 py-3.5 rounded-xl border border-purple-900/40 hover:bg-purple-950/10 text-xs font-bold transition">
+                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-4 w-4" alt="Google">
+                                <span>Google</span>
+                            </button>
+                            <button class="flex items-center justify-center space-x-2 py-3.5 rounded-xl border border-purple-900/40 hover:bg-purple-950/10 text-xs font-bold transition">
+                                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="h-4 w-4" alt="Facebook">
+                                <span>Facebook</span>
+                            </button>
+                        </div>
+
+                        <p class="text-center text-xs text-gray-400 mt-6">Don't have an account? <a href="#" onclick="showGuestLayout('register')" class="text-purple-400 font-bold hover:underline">Register Now</a></p>
+                    </div>
+
+                    <!-- REGISTER FORM CONTAINER -->
+                    <div id="register-form-container" class="glass-panel rounded-3xl p-8 border border-purple-900/40 relative hidden">
+                        <h2 class="text-3xl font-bold text-white mb-1">Create <span class="text-purple-400">Account</span></h2>
+                        <p class="text-gray-400 text-sm mb-6">Join now and start winning!</p>
+
+                        <!-- Error Banner -->
+                        <div id="reg-error" class="hidden p-3 mb-4 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400 text-xs font-medium flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span>Error text goes here</span>
+                        </div>
+
+                        <form id="register-form" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">First Name</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500 text-xs">
+                                            <i class="fa-regular fa-user"></i>
+                                        </div>
+                                        <input type="text" id="reg-firstname" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-9 pr-3 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="John" required>
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Last Name</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500 text-xs">
+                                            <i class="fa-regular fa-user"></i>
+                                        </div>
+                                        <input type="text" id="reg-lastname" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-9 pr-3 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="Doe" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Email Address</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-xs">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </div>
+                                    <input type="email" id="reg-email" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-10 pr-3 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="john.doe@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Phone Number</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-xs">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <input type="tel" id="reg-phone" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-10 pr-3 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="+91 98765 43210" required>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Username</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-xs">
+                                        <i class="fa-solid fa-at"></i>
+                                    </div>
+                                    <input type="text" id="reg-username" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-10 pr-3 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="johndoe12" required>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Password</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-xs">
+                                            <i class="fa-solid fa-lock"></i>
+                                        </div>
+                                        <input type="password" id="reg-password" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-10 pr-8 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="••••••••" required>
+                                        <button type="button" class="absolute inset-y-0 right-0 pr-2.5 flex items-center text-gray-500 hover:text-purple-400" onclick="togglePasswordVisibility('reg-password')">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Confirm Password</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-xs">
+                                            <i class="fa-solid fa-lock"></i>
+                                        </div>
+                                        <input type="password" id="reg-confirm-password" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-10 pr-8 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="••••••••" required>
+                                        <button type="button" class="absolute inset-y-0 right-0 pr-2.5 flex items-center text-gray-500 hover:text-purple-400" onclick="togglePasswordVisibility('reg-confirm-password')">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Referral Code (Optional)</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-xs">
+                                        <i class="fa-solid fa-ticket"></i>
+                                    </div>
+                                    <input type="text" id="reg-referral" class="w-full bg-purple-950/30 border border-purple-900/40 rounded-xl py-2.5 pl-10 pr-3 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition" placeholder="PZ-100X-BONUS">
+                                </div>
+                            </div>
+
+                            <label class="flex items-start space-x-2.5 cursor-pointer text-[10px] py-1">
+                                <input type="checkbox" id="reg-agree" class="custom-checkbox mt-0.5" required>
+                                <span class="text-gray-400 leading-normal">I agree to the <a href="#" class="text-purple-400 hover:underline">Terms & Conditions</a> and <a href="#" class="text-purple-400 hover:underline">Privacy Policy</a></span>
+                            </label>
+
+                            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-600 hover:to-indigo-600 text-white font-bold text-xs tracking-wider uppercase transition purple-glow shadow-[0_0_15px_rgba(123,44,191,0.5)]">REGISTER NOW</button>
+                        </form>
+
+                        <div class="relative flex py-3 items-center">
+                            <div class="flex-grow border-t border-purple-950/40"></div>
+                            <span class="flex-shrink mx-4 text-gray-500 text-[10px] font-bold uppercase tracking-wider">OR</span>
+                            <div class="flex-grow border-t border-purple-950/40"></div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="flex items-center justify-center space-x-2 py-2.5 rounded-xl border border-purple-900/40 hover:bg-purple-950/10 text-[10px] font-bold transition">
+                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-3.5 w-3.5" alt="Google">
+                                <span>Google</span>
+                            </button>
+                            <button class="flex items-center justify-center space-x-2 py-2.5 rounded-xl border border-purple-900/40 hover:bg-purple-950/10 text-[10px] font-bold transition">
+                                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="h-3.5 w-3.5" alt="Facebook">
+                                <span>Facebook</span>
+                            </button>
+                        </div>
+
+                        <p class="text-center text-[10px] text-gray-400 mt-5">Already have an account? <a href="#" onclick="showGuestLayout('login')" class="text-purple-400 font-bold hover:underline">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="flex flex-col md:flex-row justify-between items-center px-6 py-6 md:px-12 border-t border-purple-950/30 bg-[#060312] text-xs text-gray-500">
+            <p>&copy; 2026 PlayZone. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-purple-400">Terms & Conditions</a>
+                <a href="#" class="hover:text-purple-400">Privacy Policy</a>
+                <a href="#" class="hover:text-purple-400">Support</a>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ==================== MAIN AUTHENTICATED APP LAYOUT ==================== -->
+    <div id="app-layout" class="min-h-screen flex hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-[#070414] border-r border-purple-950/45 flex flex-col justify-between hidden md:flex z-35 select-none">
+            <!-- Sidebar Header Brand -->
+            <div class="p-6 border-b border-purple-950/35 flex items-center space-x-3">
+                <i class="fa-solid fa-gamepad text-purple-500 text-2xl drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"></i>
+                <span class="brand-font text-xl font-extrabold uppercase tracking-wider text-white">Play<span class="text-purple-500">Zone</span></span>
+            </div>
+
+            <!-- Profile Info Widget -->
+            <div class="px-6 py-4 border-b border-purple-950/20 flex items-center space-x-3 bg-purple-950/10">
+                <div class="relative h-10 w-10">
+                    <!-- Standard Avatar -->
+                    <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-purple-800 to-indigo-800 border-2 border-purple-500 flex items-center justify-center font-bold text-white text-sm">KP</div>
+                    <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-[#070414]"></span>
+                </div>
+                <div class="overflow-hidden">
+                    <h4 id="sidebar-username" class="text-sm font-bold text-white truncate">KingPlayer</h4>
+                    <p id="sidebar-vip" class="text-[10px] text-purple-400 font-semibold uppercase">VIP Level 1</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-grow px-4 py-4 space-y-1.5 overflow-y-auto">
+                <a id="side-link-home" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-house w-5"></i>
+                    <span>Home</span>
+                </a>
+                <a id="side-link-aviator" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-paper-plane w-5"></i>
+                    <span>Aviator</span>
+                </a>
+                <a id="side-link-mines" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-gem w-5"></i>
+                    <span>Mini Blast</span>
+                </a>
+                <a id="side-link-wallet" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-wallet w-5"></i>
+                    <span>Wallet</span>
+                </a>
+                <a id="side-link-transactions" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-right-left w-5"></i>
+                    <span>Transactions</span>
+                </a>
+                <a id="side-link-refer" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-gift w-5"></i>
+                    <span>Refer & Earn</span>
+                </a>
+                <a id="side-link-profile" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-circle-user w-5"></i>
+                    <span>Profile</span>
+                </a>
+                <a id="side-link-support" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-headset w-5"></i>
+                    <span>Support</span>
+                </a>
+                <a id="side-link-settings" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition cursor-pointer select-none">
+                    <i class="fa-solid fa-sliders w-5"></i>
+                    <span>Settings</span>
+                </a>
+                <button id="sidebar-logout-btn" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-500/10 hover:text-red-400 transition cursor-pointer select-none">
+                    <i class="fa-solid fa-right-from-bracket w-5"></i>
+                    <span>Logout</span>
+                </button>
+            </nav>
+
+            <!-- Referral Sidebar Panel widget -->
+            <div class="p-4 border-t border-purple-950/20 bg-purple-950/5">
+                <div class="glass-panel p-4 rounded-2xl relative overflow-hidden select-none">
+                    <h5 class="text-xs font-bold text-white mb-1 uppercase tracking-wider">Invite Friends</h5>
+                    <p class="text-[10px] text-gray-500 mb-3 leading-normal">Refer your friends and earn exciting 100x cash back bonuses!</p>
+                    <button onclick="switchView('refer')" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-[10px] rounded-lg transition">REFER NOW</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Slide-out Navigation Drawer -->
+        <div id="mobile-sidebar" class="fixed inset-y-0 left-0 w-64 bg-[#070414] border-r border-purple-950/45 flex flex-col justify-between transform -translate-x-full transition-transform duration-300 z-50 md:hidden select-none shadow-[5px_0_25px_rgba(0,0,0,0.8)]">
+            <div>
+                <!-- Brand Header -->
+                <div class="p-6 border-b border-purple-950/35 flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-gamepad text-purple-500 text-2xl drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"></i>
+                        <span class="brand-font text-xl font-extrabold uppercase tracking-wider text-white">Play<span class="text-purple-500">Zone</span></span>
+                    </div>
+                    <button onclick="toggleMobileSidebar()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+
+                <!-- Navigation Links for Mobile -->
+                <nav class="px-4 py-4 space-y-1.5 overflow-y-auto">
+                    <a onclick="switchView('home'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-house w-5"></i>
+                        <span>Home</span>
+                    </a>
+                    <a onclick="switchView('aviator'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-paper-plane w-5"></i>
+                        <span>Aviator</span>
+                    </a>
+                    <a onclick="switchView('mines'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-gem w-5"></i>
+                        <span>Mini Blast</span>
+                    </a>
+                    <a onclick="switchView('wallet'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-wallet w-5"></i>
+                        <span>Wallet</span>
+                    </a>
+                    <a onclick="switchView('transactions'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-right-left w-5"></i>
+                        <span>Transactions</span>
+                    </a>
+                    <a onclick="switchView('refer'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-gift w-5"></i>
+                        <span>Refer & Earn</span>
+                    </a>
+                    <a onclick="switchView('profile'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-circle-user w-5"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a onclick="switchView('support'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-headset w-5"></i>
+                        <span>Support</span>
+                    </a>
+                    <a onclick="switchView('settings'); toggleMobileSidebar();" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-purple-900/10 hover:text-white transition cursor-pointer select-none">
+                        <i class="fa-solid fa-sliders w-5"></i>
+                        <span>Settings</span>
+                    </a>
+                    <button onclick="logout(); toggleMobileSidebar();" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-500/10 hover:text-red-400 transition cursor-pointer select-none text-left">
+                        <i class="fa-solid fa-right-from-bracket w-5"></i>
+                        <span>Logout</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="p-4 border-t border-purple-950/20 bg-purple-950/5">
+                <div class="glass-panel p-4 rounded-2xl relative overflow-hidden text-center">
+                    <h5 class="text-xs font-bold text-white mb-1 uppercase tracking-wider">Invite Friends</h5>
+                    <p class="text-[9px] text-gray-500 mb-2 leading-normal">Invite your buddies & earn rewards!</p>
+                    <button onclick="switchView('refer'); toggleMobileSidebar();" class="w-full py-1.5 bg-purple-600 text-white font-bold text-[9px] rounded-lg">REFER NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Body Wrapper -->
+        <div class="flex-grow flex flex-col min-h-screen overflow-hidden">
+            <!-- App Header Navbar -->
+            <header class="h-16 border-b border-purple-950/30 bg-darkbg/90 backdrop-blur-md px-6 flex justify-between items-center sticky top-0 z-30 select-none">
+                <!-- Hamburger and section title -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleMobileSidebar()" class="md:hidden text-gray-400 hover:text-white"><i class="fa-solid fa-bars text-xl"></i></button>
+                    <a id="logo-home-link" class="md:hidden flex items-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-gamepad text-purple-500 text-xl"></i>
+                        <span class="brand-font text-lg font-bold text-white uppercase">PlayZone</span>
+                    </a>
+                </div>
+
+                <!-- Wallet balance, action, profile menu -->
+                <div class="flex items-center space-x-6">
+                    <!-- Balance Container -->
+                    <div class="flex items-center bg-[#070414]/90 border border-purple-950/50 rounded-2xl pl-4 pr-1 py-1 relative">
+                        <div class="mr-3 text-right">
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold tracking-wider leading-none">Main Balance</span>
+                            <span id="nav-balance-text" class="text-sm font-black text-white leading-normal">₹0.00</span>
+                        </div>
+                        <button id="nav-add-money-btn" class="h-9 px-4 text-xs font-bold bg-purple-600 hover:bg-purple-700 text-white rounded-xl flex items-center space-x-1.5 transition uppercase tracking-wider"><i class="fa-solid fa-plus"></i> <span>Add Money</span></button>
+                    </div>
+
+                    <!-- Notification bell -->
+                    <div class="relative">
+                        <button id="noti-icon-btn" class="h-10 w-10 rounded-xl border border-purple-950/50 flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-950/20 transition relative">
+                            <i class="fa-regular fa-bell text-lg"></i>
+                            <span id="noti-badge" class="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-red-500 border border-darkbg"></span>
+                        </button>
+
+                        <!-- Notification Dropdown -->
+                        <div id="notifications-popup" class="absolute right-0 mt-3 w-80 glass-panel-heavy rounded-2xl border border-purple-900/40 hidden z-50">
+                            <div class="p-4 border-b border-purple-900/40 flex justify-between items-center">
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Notifications</h4>
+                                <span class="text-xs text-purple-400 cursor-pointer hover:underline" onclick="STATE.notifications=[];renderNotifications();">Clear all</span>
+                            </div>
+                            <div id="notifications-list" class="max-h-72 overflow-y-auto">
+                                <!-- dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User profile dropdown widget -->
+                    <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchView('profile')">
+                        <div class="h-9 w-9 rounded-xl bg-purple-900/60 border border-purple-500/30 flex items-center justify-center font-bold text-purple-200">KP</div>
+                        <div class="hidden sm:block text-left leading-none">
+                            <h4 id="nav-username" class="text-xs font-bold text-white">KingPlayer</h4>
+                            <span id="nav-vip-level" class="text-[9px] text-purple-400 font-semibold uppercase leading-none mt-0.5 block">VIP Level 1</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] hidden sm:block"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content scrollable panel -->
+            <main class="flex-grow overflow-y-auto p-4 md:p-8 bg-darkbg">
+                <!-- Overlay popups/toasts inside game panels -->
+                
+                <!-- ==================== HOME / DASHBOARD VIEW ==================== -->
+                <div id="home-view" class="space-y-8 select-none">
+                    <!-- Welcome Hero Banner -->
+                    <div class="relative glass-panel rounded-3xl p-6 md:p-8 border border-purple-900/40 overflow-hidden flex flex-col md:flex-row justify-between items-center shadow-[0_0_20px_rgba(123,44,191,0.2)]">
+                        <div class="space-y-3 z-10 text-center md:text-left md:max-w-md">
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-white Outfit tracking-tight">Welcome back, KingPlayer 👑</h2>
+                            <p class="text-gray-400 text-sm leading-relaxed">Choose a premium game and start your winning journey! Experience real-time gameplay payouts and security.</p>
+                        </div>
+                        <div class="mt-6 md:mt-0 relative max-h-48 overflow-hidden select-none">
+                            <!-- Premium gamer banner artwork -->
+                            <img src="assets/images/login_character.png" alt="Gamer Header" class="h-44 w-auto object-cover rounded-2xl border border-purple-500/20">
+                        </div>
+                    </div>
+
+                    <!-- Games Grid selection -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-white flex items-center space-x-2"><i class="fa-solid fa-gamepad text-purple-500"></i> <span>Choose Your Game</span></h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Card 1: Aviator -->
+                            <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 flex flex-col justify-between items-start space-y-4 hover:border-red-500/30 transition duration-300 relative overflow-hidden h-72 shadow-[0_0_15px_rgba(255,0,84,0.05)] purple-glow-hover">
+                                <div class="absolute inset-0 bg-cover bg-center opacity-30 select-none pointer-events-none" style="background-image: url('assets/images/aviator_card.png');"></div>
+                                <span class="px-3 py-1 bg-red-600/90 text-white font-bold text-[10px] rounded-lg tracking-wider uppercase z-10"><i class="fa-solid fa-fire mr-1"></i> HOT</span>
+                                <div class="space-y-2 z-10">
+                                    <h4 class="text-3xl font-extrabold text-white">Aviator</h4>
+                                    <p class="text-xs text-gray-400 max-w-xs">Cash out before the red plane flies away! High risk, high multipliers.</p>
+                                </div>
+                                <button id="dash-play-aviator" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl flex items-center space-x-2 transition uppercase tracking-wider z-10 shadow-[0_0_15px_rgba(255,0,84,0.4)]"><span>Play Aviator</span> <i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+
+                            <!-- Card 2: Mines -->
+                            <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 flex flex-col justify-between items-start space-y-4 hover:border-blue-500/30 transition duration-300 relative overflow-hidden h-72 shadow-[0_0_15px_rgba(0,240,255,0.05)] purple-glow-hover">
+                                <div class="absolute inset-0 bg-cover bg-center opacity-30 select-none pointer-events-none" style="background-image: url('assets/images/mines_card.png');"></div>
+                                <span class="px-3 py-1 bg-blue-600/90 text-white font-bold text-[10px] rounded-lg tracking-wider uppercase z-10"><i class="fa-solid fa-star mr-1"></i> NEW</span>
+                                <div class="space-y-2 z-10">
+                                    <h4 class="text-3xl font-extrabold text-white">MINES</h4>
+                                    <p class="text-xs text-gray-400 max-w-xs">Find safe blue gems, avoid hidden red mines, and win big cash prizes!</p>
+                                </div>
+                                <button id="dash-play-mines" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl flex items-center space-x-2 transition uppercase tracking-wider z-10 shadow-[0_0_15px_rgba(0,240,255,0.4)]"><span>Play Mines</span> <i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Badges -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-purple-950/20">
+                        <div class="flex items-center space-x-4 p-4 glass-panel rounded-2xl">
+                            <div class="h-12 w-12 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">100% Secure</h4>
+                                <p class="text-[10px] text-gray-500">Your data is fully protected</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 glass-panel rounded-2xl">
+                            <div class="h-12 w-12 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl"><i class="fa-solid fa-bolt"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Instant Payouts</h4>
+                                <p class="text-[10px] text-gray-500">Withdraw winnings instantly</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 glass-panel rounded-2xl">
+                            <div class="h-12 w-12 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">Fair Play</h4>
+                                <p class="text-[10px] text-gray-500">Provably fair algorithm</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 glass-panel rounded-2xl">
+                            <div class="h-12 w-12 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl"><i class="fa-solid fa-headset"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">24/7 Support</h4>
+                                <p class="text-[10px] text-gray-500">We are here to help anytime</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== AVIATOR VIEW ==================== -->
+                <div id="aviator-view" class="grid lg:grid-cols-12 gap-8 hidden relative select-none">
+                    <!-- Overlay win alert -->
+                    <div id="aviator-win-overlay" class="absolute inset-0 bg-darkbg/85 flex-col items-center justify-center space-y-4 rounded-3xl hidden z-50 transition duration-300">
+                        <span class="text-green-400 font-extrabold text-7xl animate-pulse Outfit" id="aviator-overlay-winamt">₹2,000.00</span>
+                        <span class="text-white text-xl font-bold bg-green-600/20 border border-green-500/30 px-4 py-1.5 rounded-full" id="aviator-overlay-mult">2.00x</span>
+                        <p class="text-gray-400 text-sm">Credits added to your wallet balance!</p>
+                    </div>
+
+                    <!-- Left Game Panel (Chart canvas, History, Live list) -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <!-- Header with Aviator title & Recent crashes -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between p-4 glass-panel rounded-2xl gap-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-paper-plane text-red-500 text-2xl plane-bounce-anim"></i>
+                                <h4 class="text-lg font-bold text-red-500 Outfit tracking-wide uppercase">Aviator</h4>
+                            </div>
+                            <div class="flex items-center space-x-2 overflow-x-auto py-1" id="aviator-history-feed">
+                                <!-- dynamic historic crash points -->
+                            </div>
+                        </div>
+
+                        <!-- Canvas Flight Board -->
+                        <div class="relative w-full h-[400px] glass-panel-heavy rounded-3xl overflow-hidden border border-purple-900/40 shadow-inner">
+                            <canvas id="aviator-canvas" class="w-full h-full block"></canvas>
+                        </div>
+
+                        <!-- Table of live player bets -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">All Bets <span class="ml-1.5 text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-lg border border-purple-500/20" id="live-bet-count">102</span></h4>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="border-b border-purple-950/40 text-[10px] text-gray-500 font-bold uppercase tracking-wider">
+                                            <th class="px-4 py-2">User</th>
+                                            <th class="px-4 py-2">Bet (₹)</th>
+                                            <th class="px-4 py-2">Cash Out (x)</th>
+                                            <th class="px-4 py-2">Win (₹)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="aviator-bets-table-body">
+                                        <!-- simulated live bets -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Control Panel (Bet Settings) -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <!-- Manual/Auto tabs controller container -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-5">
+                            <!-- Toggle Tabs -->
+                            <div class="grid grid-cols-2 gap-2 bg-[#060312] p-1.5 rounded-xl border border-purple-950/45 text-xs font-bold text-gray-400 select-none">
+                                <button id="avi-tab-manual" class="py-2.5 rounded-lg bg-purple-900/40 text-white transition">Manual</button>
+                                <button id="avi-tab-auto" class="py-2.5 rounded-lg transition">Auto</button>
+                            </div>
+
+                            <!-- Bet inputs -->
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-400">Bet Amount (₹)</label>
+                                    <input type="number" id="aviator-bet-amount" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition font-mono" value="1000" min="10" step="10">
+                                </div>
+                                <!-- Quick sizes -->
+                                <div class="grid grid-cols-5 gap-1.5 text-[10px] font-bold font-mono text-gray-400 select-none">
+                                    <button id="avi-quick-10" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">10</button>
+                                    <button id="avi-quick-50" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">50</button>
+                                    <button id="avi-quick-100" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">100</button>
+                                    <button id="avi-quick-500" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">500</button>
+                                    <button id="avi-quick-1000" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">1000</button>
+                                </div>
+                            </div>
+
+                            <!-- Auto cash out multiplier options -->
+                            <div id="aviator-auto-cashout-container" class="space-y-4 opacity-50 transition duration-150">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-400">Auto Cash Out (x)</label>
+                                    <input type="number" id="aviator-auto-cashout" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition font-mono" placeholder="2.00" min="1.01" step="0.1">
+                                </div>
+                                <div class="grid grid-cols-4 gap-1.5 text-[10px] font-bold font-mono text-gray-400 select-none">
+                                    <button id="avi-auto-150" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">1.50x</button>
+                                    <button id="avi-auto-200" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">2.00x</button>
+                                    <button id="avi-auto-300" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">3.00x</button>
+                                    <button id="avi-auto-500" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">5.00x</button>
+                                </div>
+                            </div>
+
+                            <!-- Place Bet primary action button -->
+                            <button id="aviator-bet-btn" class="w-full py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-2xl flex flex-col items-center justify-center transition uppercase tracking-wider shadow-[0_0_15px_rgba(22,163,74,0.4)] select-none">
+                                <span id="aviator-btn-label" class="text-sm">Place Bet</span>
+                                <span id="aviator-btn-sublabel" class="text-xs font-mono font-normal opacity-85 mt-0.5">₹1,000.00</span>
+                            </button>
+                        </div>
+
+                        <!-- Stats Board widget: User specific bets -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-4">
+                            <h4 class="text-xs font-bold text-white uppercase tracking-wider">My Bets</h4>
+                            <div class="flex justify-between items-center text-xs text-gray-400 py-1.5 border-b border-purple-950/25">
+                                <span>Total Wallet Balance:</span>
+                                <span class="font-mono text-white font-bold" id="aviator-balance-display">₹0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Provably Fair details -->
+                        <div class="flex justify-between items-center text-[10px] text-gray-500 px-2 py-1 select-none">
+                            <span class="flex items-center space-x-1"><i class="fa-solid fa-shield-halved text-purple-500/80"></i> <span>Provably Fair</span></span>
+                            <span>Powered by SPRIBE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MINES VIEW ==================== -->
+                <div id="mines-view" class="grid lg:grid-cols-12 gap-8 hidden select-none">
+                    <!-- Left Board View -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <!-- Mines top indicator bar -->
+                        <div class="flex justify-between items-center p-4 glass-panel rounded-2xl border border-purple-900/30">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-gem text-blue-400 text-xl"></i>
+                                <h4 class="text-lg font-bold text-white Outfit tracking-wide uppercase">Mini Blast</h4>
+                            </div>
+                            <div class="flex items-center space-x-4 text-xs font-semibold">
+                                <span class="text-gray-400 bg-purple-950/20 border border-purple-900/35 px-3 py-1.5 rounded-lg">Mines: <span id="mines-count-indicator" class="text-purple-300 font-bold">3</span></span>
+                                <span class="text-gray-400 bg-yellow-950/10 border border-yellow-900/25 px-3 py-1.5 rounded-lg">Next Payout: <span id="mines-next-payout" class="text-yellow-400 font-mono font-bold">₹195.00</span></span>
+                            </div>
+                        </div>
+
+                        <!-- 5x5 Tiles Grid Board -->
+                        <div class="glass-panel-heavy rounded-3xl p-6 border border-purple-900/40 flex items-center justify-center min-h-[400px]">
+                            <div id="mines-grid" class="grid grid-cols-5 gap-3.5 w-full max-w-[400px] aspect-square">
+                                <!-- Generated programmatically in mines.js -->
+                            </div>
+                        </div>
+
+                        <!-- Stats feed below the board -->
+                        <div class="grid grid-cols-3 gap-4 text-center select-none">
+                            <div class="glass-panel p-4 rounded-2xl border border-purple-900/30">
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">Total Bet</span>
+                                <span id="mines-stat-bet" class="text-sm font-black text-white font-mono">₹100.00</span>
+                            </div>
+                            <div class="glass-panel p-4 rounded-2xl border border-purple-900/30">
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">Total Multiplier</span>
+                                <span id="mines-stat-multiplier" class="text-sm font-black text-purple-300 font-mono">1.57x</span>
+                            </div>
+                            <div class="glass-panel p-4 rounded-2xl border border-purple-900/30">
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">Potential Win</span>
+                                <span id="mines-stat-win" class="text-sm font-black text-green-400 font-mono">₹157.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Grid action Start / Cashout -->
+                        <button id="mines-start-btn" class="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm tracking-wider uppercase rounded-2xl transition shadow-[0_0_15px_rgba(123,44,191,0.4)]">Start New Game</button>
+                        <button id="mines-cashout-btn" class="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm tracking-wider uppercase rounded-2xl transition shadow-[0_0_15px_rgba(123,44,191,0.4)] hidden select-none flex items-center justify-center space-x-2">
+                            <span>Cash Out</span>
+                            <span id="mines-cashout-text" class="font-mono">₹157.00</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Betting Panel -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <!-- Game Settings Form -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-5">
+                            <div class="flex justify-between items-center pb-2 border-b border-purple-950/20">
+                                <span class="text-xs text-gray-400 font-semibold uppercase">Bet Configuration</span>
+                                <a href="#" class="text-[10px] text-purple-400 hover:underline flex items-center space-x-1"><i class="fa-regular fa-circle-question"></i> <span>How to Play?</span></a>
+                            </div>
+
+                            <!-- Bet inputs -->
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-400">Bet Amount (₹)</label>
+                                    <input type="number" id="mines-bet-amount" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition font-mono" value="100" min="10" step="10">
+                                </div>
+                                <!-- Quick sizes -->
+                                <div class="grid grid-cols-5 gap-1.5 text-[10px] font-bold font-mono text-gray-400 select-none">
+                                    <button id="mines-quick-10" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">10</button>
+                                    <button id="mines-quick-50" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">50</button>
+                                    <button id="mines-quick-100" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">100</button>
+                                    <button id="mines-quick-500" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">500</button>
+                                    <button id="mines-quick-1000" class="py-2 rounded-lg bg-[#070414] hover:bg-purple-950/20 border border-purple-950/45 hover:text-white transition">1000</button>
+                                </div>
+                            </div>
+
+                            <!-- Dropdown for Number of Mines -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-400 flex items-center space-x-1.5"><span>Number of Mines</span> <i class="fa-solid fa-circle-info text-[10px] text-gray-600 cursor-pointer"></i></label>
+                                <select id="mines-count-select" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition">
+                                    <option value="1">1 Mine</option>
+                                    <option value="3" selected>3 Mines</option>
+                                    <option value="5">5 Mines</option>
+                                    <option value="10">10 Mines</option>
+                                    <option value="15">15 Mines</option>
+                                    <option value="20">20 Mines</option>
+                                    <option value="24">24 Mines</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Possible Payouts list board -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-4">
+                            <h4 class="text-xs font-bold text-white uppercase tracking-wider">Possible Payouts</h4>
+                            <div id="mines-possible-payouts" class="space-y-1 select-none">
+                                <!-- populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Mini history widget -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Game History</h4>
+                                <a href="#" class="text-[10px] text-purple-400 hover:underline">View All</a>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead>
+                                        <tr class="border-b border-purple-950/30 text-[9px] text-gray-500 font-bold uppercase">
+                                            <th class="px-4 py-1.5">Time</th>
+                                            <th class="px-4 py-1.5">Mines</th>
+                                            <th class="px-4 py-1.5">Bet</th>
+                                            <th class="px-4 py-1.5">Mult</th>
+                                            <th class="px-4 py-1.5">Win</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mines-history-table-body">
+                                        <!-- Dynamic game items -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== WALLET VIEW ==================== -->
+                <div id="wallet-view" class="space-y-8 hidden">
+                    <!-- Balance Banner Display -->
+                    <div class="glass-panel rounded-3xl p-8 border border-purple-900/40 flex justify-between items-center shadow-lg relative overflow-hidden select-none">
+                        <div class="space-y-2">
+                            <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Available Wallet Balance</span>
+                            <h2 id="wallet-balance-display" class="text-5xl font-black text-white Outfit">₹0.00</h2>
+                        </div>
+                        <div class="h-16 w-16 bg-purple-950/40 border border-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 text-3xl"><i class="fa-solid fa-wallet"></i></div>
+                    </div>
+
+                    <!-- Deposit and Withdraw Grid forms -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Deposit Form -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-5">
+                            <h3 class="text-lg font-bold text-white Outfit uppercase tracking-wider flex items-center space-x-2"><i class="fa-solid fa-circle-plus text-green-400"></i> <span>Deposit Money</span></h3>
+                            
+                            <div id="deposit-error" class="hidden p-3 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400 text-xs font-medium"></div>
+                            <div id="deposit-success" class="hidden p-3 rounded-xl bg-green-950/60 border border-green-500/30 text-green-400 text-xs font-medium"></div>
+
+                            <!-- Step 1: Input Amount -->
+                            <form id="deposit-form" class="space-y-4">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-400 block text-left">Enter Amount (₹) <span class="text-[10px] text-purple-400 font-normal ml-1">(Min ₹100 for 1st deposit)</span></label>
+                                    <input type="number" id="deposit-amount" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition font-mono" placeholder="500" min="10" required>
+                                </div>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <button type="button" onclick="setDepositAmount(100)" class="py-2 bg-purple-950/60 hover:bg-purple-900 text-purple-300 rounded-lg text-xs font-semibold transition border border-purple-900/30">₹100</button>
+                                    <button type="button" onclick="setDepositAmount(500)" class="py-2 bg-purple-950/60 hover:bg-purple-900 text-purple-300 rounded-lg text-xs font-semibold transition border border-purple-900/30">₹500</button>
+                                    <button type="button" onclick="setDepositAmount(1000)" class="py-2 bg-purple-950/60 hover:bg-purple-900 text-purple-300 rounded-lg text-xs font-semibold transition border border-purple-900/30">₹1,000</button>
+                                    <button type="button" onclick="setDepositAmount(5000)" class="py-2 bg-purple-950/60 hover:bg-purple-900 text-purple-300 rounded-lg text-xs font-semibold transition border border-purple-900/30">₹5,000</button>
+                                </div>
+                                <button type="submit" class="w-full py-3.5 bg-green-600 hover:bg-green-700 text-white font-bold text-sm tracking-wider uppercase rounded-xl transition shadow-[0_0_15px_rgba(22,163,74,0.4)]">Proceed to Pay</button>
+                            </form>
+
+                            <!-- Step 2: PhonePe UPI Payment Screen -->
+                            <div id="deposit-upi-container" class="hidden space-y-4">
+                                <div class="bg-[#5f259f] rounded-2xl p-4 flex items-center justify-between text-white border border-[#7e34d1]/30">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-10 w-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow">
+                                            <svg viewBox="0 0 100 100" class="w-8 h-8 text-[#5f259f] fill-current">
+                                                <path d="M80 15H20c-2.8 0-5 2.2-5 5v60c0 2.8 2.2 5 5 5h60c2.8 0 5-2.2 5-5V20c0-2.8-2.2-5-5-5zm-30 65H32V68h18v12zm18-20H32v-8h36v8zm0-16H32v-8h36v8z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="text-left">
+                                            <h4 class="font-extrabold text-sm tracking-wide">PhonePe UPI Gateway</h4>
+                                            <p class="text-[10px] text-purple-200">Instant Automated Credit</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold bg-[#3e146f] px-2.5 py-1 rounded-full border border-purple-400/20 text-purple-200">₹<span id="deposit-upi-amount-label">0.00</span></span>
+                                </div>
+
+                                <div class="bg-[#060312] border border-purple-950/45 rounded-2xl p-5 flex flex-col items-center space-y-4">
+                                    <div class="relative bg-purple-950/20 border-2 border-purple-500/20 p-2.5 rounded-2xl max-w-[280px]">
+                                        <img id="deposit-upi-qr" src="assets/images/payment_qr.png" alt="PhonePe UPI QR Code" class="w-full max-h-[380px] object-contain rounded-xl shadow-lg border border-purple-900/30">
+                                        <div class="absolute inset-0 bg-transparent pointer-events-none border border-purple-500/30 rounded-2xl animate-pulse"></div>
+                                    </div>
+                                    <p class="text-[10px] text-gray-500 text-center uppercase tracking-wider font-semibold">Scan QR Code to pay via PhonePe / any UPI app</p>
+                                </div>
+
+                                <div class="space-y-3 text-xs">
+                                    <!-- Copy UPI ID -->
+                                    <div class="flex items-center justify-between bg-[#060312] border border-purple-950/45 p-3 rounded-xl">
+                                        <div class="space-y-0.5 text-left">
+                                            <span class="text-[10px] text-gray-500 block uppercase font-bold">Merchant UPI ID</span>
+                                            <span id="upi-merchant-id" class="text-white font-mono font-semibold">mushabkhan@ybl</span>
+                                        </div>
+                                        <button type="button" onclick="copyText('mushabkhan@ybl', 'UPI ID copied!')" class="h-9 px-3 rounded-lg bg-purple-950/40 hover:bg-purple-900 border border-purple-900/30 text-purple-300 transition text-xs font-semibold flex items-center space-x-1.5"><i class="fa-regular fa-copy"></i> <span>Copy</span></button>
+                                    </div>
+
+                                    <!-- Copy Amount -->
+                                    <div class="flex items-center justify-between bg-[#060312] border border-purple-950/45 p-3 rounded-xl">
+                                        <div class="space-y-0.5 text-left">
+                                            <span class="text-[10px] text-gray-500 block uppercase font-bold">Exact Amount to Pay</span>
+                                            <span class="text-white font-mono font-semibold">₹<span id="deposit-upi-amount-label2">0.00</span></span>
+                                        </div>
+                                        <button type="button" onclick="copyText(window.currentDepositAmount.toString(), 'Amount copied!')" class="h-9 px-3 rounded-lg bg-purple-950/40 hover:bg-purple-900 border border-purple-900/30 text-purple-300 transition text-xs font-semibold flex items-center space-x-1.5"><i class="fa-regular fa-copy"></i> <span>Copy</span></button>
+                                    </div>
+
+                                    <!-- UTR Input -->
+                                    <form id="deposit-utr-form" class="space-y-3.5">
+                                        <div class="space-y-1.5 text-left">
+                                            <label class="text-xs font-bold text-gray-400 flex items-center justify-between">
+                                                <span>12-Digit Transaction Ref No. (UTR)</span>
+                                                <span class="text-[10px] text-purple-400 font-semibold lowercase">Required</span>
+                                            </label>
+                                            <input type="text" id="deposit-utr" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition font-mono tracking-widest text-center" placeholder="e.g. 612345678901" maxlength="12" required>
+                                        </div>
+                                        
+                                        <div class="flex space-x-3">
+                                            <button type="button" id="btn-cancel-upi" class="w-1/3 py-3 bg-[#060312] border border-purple-900/40 hover:bg-purple-950 text-gray-400 hover:text-white font-bold text-xs tracking-wider uppercase rounded-xl transition">Back</button>
+                                            <button type="submit" class="w-2/3 py-3 bg-green-600 hover:bg-green-700 text-white font-bold text-xs tracking-wider uppercase rounded-xl transition shadow-[0_0_15px_rgba(22,163,74,0.4)]">Submit UTR</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Withdraw Form -->
+                        <div class="glass-panel rounded-3xl p-6 border border-purple-900/40 space-y-5">
+                            <h3 class="text-lg font-bold text-white Outfit uppercase tracking-wider flex items-center space-x-2"><i class="fa-solid fa-circle-minus text-red-400"></i> <span>Withdraw Winnings</span></h3>
+
+                            <div id="withdraw-error" class="hidden p-3 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400 text-xs font-medium"></div>
+                            <div id="withdraw-success" class="hidden p-3 rounded-xl bg-green-950/60 border border-green-500/30 text-green-400 text-xs font-medium"></div>
+
+                            <form id="withdraw-form" class="space-y-4">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-400 block text-left">Enter Amount (₹) <span class="text-[10px] text-purple-400 font-normal ml-1">(Minimum ₹109)</span></label>
+                                    <input type="number" id="withdraw-amount" class="w-full bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition font-mono" placeholder="1000" min="109" required>
+                                </div>
+                                <button type="submit" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm tracking-wider uppercase rounded-xl transition shadow-[0_0_15px_rgba(123,44,191,0.4)]">Initiate Withdrawal</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Transaction logs -->
+                    <div class="glass-panel rounded-3xl p-6 border border-purple-900/40">
+                        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Deposit & Withdrawal History</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="border-b border-purple-950/40 text-xs text-gray-500 font-bold uppercase">
+                                        <th class="px-6 py-3">Transaction ID</th>
+                                        <th class="px-6 py-3">Date</th>
+                                        <th class="px-6 py-3">Type</th>
+                                        <th class="px-6 py-3">Amount</th>
+                                        <th class="px-6 py-3">Status</th>
+                                        <th class="px-6 py-3">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="wallet-tx-table-body">
+                                    <!-- Populated programmatically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== TRANSACTIONS VIEW ==================== -->
+                <div id="transactions-view" class="glass-panel rounded-3xl p-6 border border-purple-900/40 hidden">
+                    <h3 class="text-lg font-bold text-white Outfit uppercase tracking-wider mb-6 flex items-center space-x-2"><i class="fa-solid fa-right-left text-purple-500"></i> <span>Transaction Statement Logs</span></h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-purple-950/40 text-xs text-gray-500 font-bold uppercase">
+                                    <th class="px-6 py-3">ID</th>
+                                    <th class="px-6 py-3">Timestamp Date</th>
+                                    <th class="px-6 py-3">Type</th>
+                                    <th class="px-6 py-3">Amount</th>
+                                    <th class="px-6 py-3">Status</th>
+                                    <th class="px-6 py-3">Summary Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-table-body">
+                                <!-- Dynamic transactions -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ==================== REFER & EARN VIEW ==================== -->
+                <div id="refer-view" class="glass-panel rounded-3xl p-8 border border-purple-900/40 hidden select-none space-y-6 max-w-2xl mx-auto">
+                    <div class="text-center space-y-2">
+                        <div class="h-20 w-20 bg-purple-950/60 border-2 border-purple-500 rounded-full flex items-center justify-center text-purple-400 text-3xl mx-auto drop-shadow-[0_0_15px_rgba(123,44,191,0.4)]"><i class="fa-solid fa-gift"></i></div>
+                        <h2 class="text-3xl font-extrabold text-white Outfit tracking-tight">Refer Friends & Earn Cash</h2>
+                        <p class="text-gray-400 text-sm max-w-md mx-auto">Get a bonus up to ₹1,000 for every friend that joins PlayZone and makes their first deposit!</p>
+                    </div>
+
+                    <div class="bg-[#060312] border border-purple-950/45 p-6 rounded-2xl text-center space-y-3">
+                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Your Referral Link</span>
+                        <div class="flex items-center space-x-2 bg-darkbg rounded-xl border border-purple-900/40 p-2">
+                            <span class="text-sm font-mono text-purple-300 select-all truncate flex-grow text-left pl-2">http://game-production-7afa.up.railway.app</span>
+                            <button onclick="alert('Referral link copied to clipboard!')" class="h-9 w-9 rounded-lg bg-purple-600 hover:bg-purple-700 text-white transition flex items-center justify-center text-sm"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== PROFILE VIEW ==================== -->
+                <div id="profile-view" class="glass-panel rounded-3xl p-8 border border-purple-900/40 hidden max-w-2xl mx-auto select-none space-y-8">
+                    <!-- Profile Card -->
+                    <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 pb-6 border-b border-purple-950/20">
+                        <div class="h-24 w-24 rounded-full bg-gradient-to-tr from-purple-800 to-indigo-800 border-4 border-purple-500 flex items-center justify-center font-bold text-white text-3xl shadow-lg">KP</div>
+                        <div class="text-center sm:text-left space-y-1">
+                            <h2 id="prof-fullname" class="text-2xl font-black text-white Outfit leading-none">John Doe</h2>
+                            <p class="text-xs text-purple-400 font-semibold uppercase tracking-wider">VIP Level 1 PlayZone Player</p>
+                        </div>
+                    </div>
+
+                    <!-- Details Fields -->
+                    <div class="grid sm:grid-cols-2 gap-6 text-sm">
+                        <div class="space-y-1">
+                            <span class="text-xs text-gray-500 block">Username</span>
+                            <span id="prof-username" class="text-white font-semibold">KingPlayer</span>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="text-xs text-gray-500 block">Email Address</span>
+                            <span id="prof-email" class="text-white font-semibold">kingplayer@example.com</span>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="text-xs text-gray-500 block">Phone Number</span>
+                            <span id="prof-phone" class="text-white font-semibold">+91 98765 43210</span>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="text-xs text-gray-500 block">Account Created</span>
+                            <span id="prof-joined" class="text-white font-semibold">24-06-2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== SUPPORT VIEW ==================== -->
+                <div id="support-view" class="glass-panel rounded-3xl p-6 border border-purple-900/40 hidden max-w-2xl mx-auto flex flex-col h-[550px] shadow-lg relative select-none">
+                    <div class="flex justify-between items-center pb-4 border-b border-purple-950/25">
+                        <div class="flex items-center space-x-3">
+                            <div class="h-10 w-10 rounded-xl bg-purple-900/60 border border-purple-500/30 flex items-center justify-center text-purple-300 text-lg"><i class="fa-solid fa-headset"></i></div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider">PlayZone VIP Live Support</h3>
+                                <p class="text-[10px] text-green-400 font-medium">● Dedicated Specialist Online</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages list -->
+                    <div id="support-chat-messages" class="flex-grow overflow-y-auto p-4 space-y-4 my-4 select-text">
+                        <!-- Welcome message -->
+                        <div class="flex items-end space-x-2">
+                            <div class="h-8 w-8 rounded-full bg-purple-900/60 border border-purple-400 flex items-center justify-center font-bold text-xs text-purple-200">A</div>
+                            <div class="flex flex-col space-y-1 max-w-[70%]">
+                                <div class="bg-purple-950/60 border border-purple-900/50 text-gray-200 rounded-2xl rounded-bl-none px-4 py-2.5 text-sm">
+                                    Welcome to PlayZone live support. Let me know if you have any questions regarding deposits, withdrawals, or game rules!
+                                </div>
+                                <span class="text-[10px] text-gray-500">12:35 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input footer -->
+                    <form id="support-send-form" class="flex items-center space-x-3 pt-4 border-t border-purple-950/20">
+                        <input type="text" id="support-input" class="flex-grow bg-[#060312] border border-purple-900/45 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-purple-500 transition placeholder-gray-600" placeholder="Type your message here..." required>
+                        <button type="submit" class="h-11 w-11 rounded-xl bg-purple-600 hover:bg-purple-700 text-white flex items-center justify-center transition shadow-[0_0_10px_rgba(123,44,191,0.4)]"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+
+                <!-- ==================== SETTINGS VIEW ==================== -->
+                <div id="settings-view" class="glass-panel rounded-3xl p-8 border border-purple-900/40 hidden max-w-2xl mx-auto select-none space-y-6">
+                    <h3 class="text-lg font-bold text-white Outfit uppercase tracking-wider mb-4 flex items-center space-x-2"><i class="fa-solid fa-sliders text-purple-500"></i> <span>General Settings</span></h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-purple-950/20">
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Synthesizer Sound Effects</h4>
+                                <p class="text-[10px] text-gray-500">Enable synthesized gaming audios and multiplier beeps</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-purple-950 border border-purple-900/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-purple-400 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex justify-between items-center py-3 border-b border-purple-950/20">
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Animations</h4>
+                                <p class="text-[10px] text-gray-500">Enable card flipping and plane flight renderings</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-purple-950 border border-purple-900/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-purple-400 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Password visibility toggler and basic validation helpers -->
+    <script>
+        function togglePasswordVisibility(id) {
+            const input = document.getElementById(id);
+            const btn = input.nextElementSibling.querySelector('i');
+            if (input.type === "password") {
+                input.type = "text";
+                btn.className = "fa-regular fa-eye-slash";
+            } else {
+                input.type = "password";
+                btn.className = "fa-regular fa-eye";
+            }
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+    </script>
+
+    <!-- SPA JS Modules -->
+    <script src="app.js"></script>
+    <script src="aviator.js"></script>
+    <script src="mines.js"></script>
+</body>
+</html>

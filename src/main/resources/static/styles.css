@@ -1,0 +1,181 @@
+/* Custom styles for PlayZone Premium Neon Gaming Platform */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --darkbg: #0a051b;
+    --darkpanel: #110c28;
+    --brandpurple: #7b2cbf;
+    --brandpurplelight: #9d4edd;
+    --brandred: #ff0054;
+    --brandblue: #00f0ff;
+    --brandgreen: #39FF14;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--darkbg);
+    color: #e2e8f0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-font {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0f0a24;
+}
+::-webkit-scrollbar-thumb {
+    background: #2b1f55;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brandpurple);
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+    background: rgba(17, 12, 40, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(123, 44, 191, 0.15);
+}
+
+.glass-panel-heavy {
+    background: rgba(11, 7, 30, 0.95);
+    border: 1px solid rgba(123, 44, 191, 0.25);
+}
+
+/* Glow Effects */
+.purple-glow {
+    box-shadow: 0 0 15px rgba(123, 44, 191, 0.4);
+}
+.purple-glow-hover:hover {
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.6);
+    border-color: rgba(157, 78, 221, 0.5);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.red-glow {
+    box-shadow: 0 0 15px rgba(255, 0, 84, 0.4);
+}
+
+.blue-glow {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.green-glow {
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+}
+
+/* Card Flipping Animations (Mines Grid) */
+.mine-card {
+    perspective: 1000px;
+}
+
+.mine-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.mine-card.is-revealed .mine-card-inner {
+    transform: rotateY(180deg);
+}
+
+.mine-card-front, .mine-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 0.5rem;
+}
+
+.mine-card-front {
+    background-color: rgba(17, 12, 40, 0.8);
+    border: 1px solid rgba(123, 44, 191, 0.25);
+}
+
+.mine-card-front:hover {
+    border-color: rgba(0, 240, 255, 0.5);
+    background-color: rgba(22, 16, 52, 0.9);
+}
+
+.mine-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Animations */
+@keyframes pulse-border {
+    0%, 100% { border-color: rgba(123, 44, 191, 0.2); }
+    50% { border-color: rgba(157, 78, 221, 0.7); }
+}
+
+.pulse-border-anim {
+    animation: pulse-border 2s infinite;
+}
+
+@keyframes plane-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.plane-bounce-anim {
+    animation: plane-bounce 3s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 3px solid rgba(123, 44, 191, 0.1);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border-left-color: var(--brandpurplelight);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Custom Checkbox (Remember Me) */
+.custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 1.25rem;
+    width: 1.25rem;
+    background-color: rgba(17, 12, 40, 0.8);
+    border: 1px solid rgba(123, 44, 191, 0.4);
+    border-radius: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.custom-checkbox:checked {
+    background-color: var(--brandpurple);
+    border-color: var(--brandpurplelight);
+}
+
+.custom-checkbox:checked::after {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+    font-size: 0.75rem;
+}
